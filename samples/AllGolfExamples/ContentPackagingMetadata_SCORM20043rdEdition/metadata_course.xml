@@ -1,0 +1,339 @@
+<?xml version="1.0" ?>
+<!-- An example of course level metadata using every possible metadata element.-->
+<lom xmlns="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM lom.xsd">
+  <general>
+   
+    <!-- This course is identifier by a unique URI in a domain controlled by us.-->
+    <identifier>
+      <catalog>URI</catalog>
+      <entry>com.scorm.golfsamples.contentpackaging.metadata.20043rd</entry>
+    </identifier>
+    
+    <title>
+      <string language="en-US">Golf Explained</string>
+      <!-- An alternate title for Spanish language users-->
+      <string language="es">Explicó Golf</string>
+    </title>
+
+    <!-- This content is written primarily in English-->
+    <language>en</language>
+
+    <description>
+      <string language="en-US">A high level overview of the sport of golf. This course describes how to play golf, how to use a golf handicap, the etiquette of golfing and how to have fun while playing.</string>
+    </description>
+
+    <!-- Several keyword sets are applicable-->
+    <keyword>
+      <string language="en-US">golf</string>
+    </keyword>
+    <keyword>
+      <string language="en-US">golf etiquette</string>
+    </keyword>
+    <keyword>
+      <string language="en-US">golf handicap</string>
+    </keyword>
+
+    <coverage>
+      <string language="en-US">Current time. Applicable to the entire world, but focused on the US and UK.</string>
+    </coverage>
+    
+    <structure>
+      <source>LOMv1.0</source>
+      <value>hierarchical</value>
+    </structure>
+    
+    <aggregationLevel>
+      <source>LOMv1.0</source>
+      <value>1</value>
+    </aggregationLevel>
+    
+  </general>
+  
+  <lifeCycle>
+
+    <version>
+      <string language="en-US">1.0</string>
+    </version>
+    
+    <status>
+      <source>LOMv1.0</source>
+      <value>final</value>
+    </status>
+
+    <contribute>
+      <role>
+        <source>LOMv1.0</source>
+        <value>publisher</value>
+      </role>
+      <entity>
+        <![CDATA[BEGIN:VCARD
+VERSION:2.1
+FN:Mike Rustici
+ORG:Rustici Software
+TEL;WORK;VOICE:(866) 49-SCORM
+ADR;WORK:;;3326 Aspen Grove Dr Ste 304;Franklin;TN;37067;United States of America
+EMAIL;PREF;INTERNET:info@scorm.com
+END:VCARD]]>
+      </entity>
+      <date>
+        <dateTime>2009-01-23</dateTime>
+        <description>
+          <string language="en-US">This is the date this sample metadata was first created.</string>
+        </description>
+      </date>
+    </contribute>
+
+    <contribute>
+      <role>
+        <source>LOMv1.0</source>
+        <value>content provider</value>
+      </role>
+      <entity>
+        <![CDATA[BEGIN:VCARD
+VERSION:2.1
+ORG:Wikipedia
+END:VCARD]]>
+      </entity>
+      <date>
+        <dateTime>2009-01-12</dateTime>
+        <description>
+          <string language="en-US">This is the date the text copy was copied from Wikipedia.</string>
+        </description>
+      </date>
+    </contribute>
+    
+  </lifeCycle>
+  
+  <metaMetadata>
+
+    <!-- A unique identifier in our domain identifying this particular metadata file-->
+    <identifier>
+      <catalog>URI</catalog>
+      <entry>com.scorm.golfsamples.contentpackaging.metadata.20043rd.courselevelmetadata</entry>
+    </identifier>
+   
+    <contribute>
+      <role>
+        <source>LOMv1.0</source>
+        <value>creator</value>
+      </role>
+      <entity>
+        <![CDATA[BEGIN:VCARD
+VERSION:2.1
+FN:Mike Rustici
+ORG:Rustici Software
+TEL;WORK;VOICE:(866) 49-SCORM
+ADR;WORK:;;3326 Aspen Grove Dr Ste 304;Franklin;TN;37067;United States of America
+EMAIL;PREF;INTERNET:info@scorm.com
+END:VCARD]]>
+      </entity>
+      <date>
+        <dateTime>2009-01-23</dateTime>
+        <description>
+          <string language="en-US">This is the date this sample metadata was first created.</string>
+        </description>
+      </date>
+    </contribute>
+    
+    <metadataSchema>LOMv1.0</metadataSchema>
+    <metadataSchema>SCORM_CAM_v1.3</metadataSchema>
+    
+    <language>en-us</language>
+  
+  </metaMetadata>
+  
+  <technical>
+
+    <!-- All of the file types used by this course-->
+    <format>text/html</format>
+    <format>image/jpeg</format>
+    <format>application/x-javascript</format>
+    <format>image/png</format>
+    <format>text/css</format>
+
+    <size>516096</size>
+
+    <location>http://www.scorm.com</location>
+
+    <!-- 
+    Include an artificial constraint that this course needs to run in IE 5-7.
+    (really though, it can run in any browser.)
+    -->
+    <requirement>
+      <orComposite>
+        <type>
+          <source>LOMv1.0</source>
+          <value>browser</value>
+        </type>
+        <name>
+          <source>LOMv1.0</source>
+          <value>ms-internet explorer</value>
+        </name>
+        <minimumVersion>5.0</minimumVersion>
+        <maximumVersion>7.0</maximumVersion>
+      </orComposite>
+    </requirement>
+
+    <installationRemarks>
+      <string language="en-us">Nothing to it, just put the file out there.</string>
+    </installationRemarks>
+
+    <otherPlatformRequirements>
+      <string language="en-us">This course has been tested in Firefox and IE and also on Windows and on a Mac.</string>
+    </otherPlatformRequirements>
+
+    <duration>
+      <duration>PT10M</duration>
+      <description>
+        <string language="en-us">This field isn't really applicable to the course as a whole, it is meant more for media assets. Here we say that it takes about 10 minutes to complete.</string>
+      </description>
+    </duration>
+    
+  </technical>
+
+  <educational>
+    
+    <learningResourceType>
+      <source>LOMv1.0</source>
+      <value>narrative text</value>
+    </learningResourceType>
+    <learningResourceType>
+      <source>LOMv1.0</source>
+      <value>self assessment</value>
+    </learningResourceType>
+    
+    <interactivityLevel>
+      <source>LOMv1.0</source>
+      <value>very low</value>
+    </interactivityLevel>
+
+    <semanticDensity>
+      <source>LOMv1.0</source>
+      <value>medium</value>
+    </semanticDensity>
+
+    <intendedEndUserRole>
+      <source>LOMv1.0</source>
+      <value>learner</value>
+    </intendedEndUserRole>
+
+    <context>
+      <source>LOMv1.0</source>
+      <value>training</value>
+    </context>
+
+    <typicalAgeRange>
+      <string language="en-us">Age 7 to 90</string>
+    </typicalAgeRange>
+
+    <difficulty>
+      <source>LOMv1.0</source>
+      <value>very easy</value>
+    </difficulty>
+
+    <typicalLearningTime>
+      <duration>PT10M</duration>
+      <description>
+        <string language="en-us">This course can usually be completed in about 10 minutes.</string>
+      </description>
+    </typicalLearningTime>
+
+    <description>
+      <string>This course should be used to provide people with a new interest in golf an overview of the game. It does not provide instruction on how to swing a club or any other athletic advice. It is purely an overview of the concepts of the game.</string>
+    </description>
+
+    <language>en-us</language>
+    
+  </educational>
+  
+  <rights>
+
+    <cost>
+      <source>LOMv1.0</source>
+      <value>no</value>
+    </cost>
+
+    <copyrightAndOtherRestrictions>
+      <source>LOMv1.0</source>
+      <value>yes</value>
+    </copyrightAndOtherRestrictions>
+
+    <description>
+      <string>This content may be freely distributed subject to the Creative Commons Attribution 3.0 United States License.</string>
+    </description>
+  
+  </rights>
+
+  <relation>
+  
+    <kind>
+      <source>LOMv1.0</source>
+      <value>isbasedon</value>
+    </kind>
+    <resource>
+      <identifier>
+        <catalog>URI</catalog>
+        <entry>com.scorm.golfsamples.contentpackaging.singlesco.20043rd</entry>
+      </identifier>
+      <description>
+        <string language="en-us">This course was derived from the Single SCO golf example from Rustici Software.</string>
+      </description>
+    </resource>
+  
+  </relation>
+
+  <annotation>
+    <entity>
+      <![CDATA[BEGIN:VCARD
+VERSION:2.1
+FN:Mike Rustici
+ORG:Rustici Software
+TEL;WORK;VOICE:(866) 49-SCORM
+ADR;WORK:;;3326 Aspen Grove Dr Ste 304;Franklin;TN;37067;United States of America
+EMAIL;PREF;INTERNET:info@scorm.com
+END:VCARD]]>
+    </entity>
+    <date>
+      <dateTime>2009-01-23</dateTime>
+      <description>
+        <string language="en-us">This annotation was added on the same date the metadata was developed.</string>
+      </description>
+    </date>
+    <description>
+      <string language="en-us">Learners will need to understand that golf is a sport.</string>
+    </description>
+  </annotation>
+  
+  <classification>
+    
+    <!-- Ties this course into the rest of the golf samples library.-->
+    <purpose>
+      <source>LOMv1.0</source>
+      <value>educational objective</value>
+    </purpose>
+    
+    <taxonPath>
+      <source>
+        <string language="en-us">Rustici Software's catalog of golf sample courses</string>
+      </source>
+      <taxon>
+        <id>metadata_instruction</id>
+        <entry>
+          <string language="en-us">Examples that demonstrate the proper use of SCORM metadata</string>
+        </entry>
+      </taxon>
+    </taxonPath>
+    
+    <description>
+      <string language="en-US">This is the primary example of metadata usage in the golf samples. It is for SCORM 2004 3rd Edition and should be used in conjunction with the example for SCORM 1.2.</string>
+    </description>
+
+    <keyword>
+      <string language="en-US">metadata</string>
+    </keyword>
+    <keyword>
+      <string language="en-US">SCORM 2004</string>
+    </keyword>
+    
+  </classification>
+</lom>

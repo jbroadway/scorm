@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<!-- An example of course level metadata using every possible metadata element.-->
+<lom xmlns="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM lom.xsd">
+  <general>
+
+    <description>
+      <string language="en-US">A description of the default organization in the golf metadata couse. If more than one organization was defined in this manifest, this metadata would be useful in allowing someone to distinguish among them.</string>
+    </description>
+
+    <structure>
+      <source>LOMv1.0</source>
+      <value>hierarchical</value>
+    </structure>
+
+  </general>
+</lom>

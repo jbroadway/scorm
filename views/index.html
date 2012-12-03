@@ -1,0 +1,56 @@
+<script>
+$(function () {
+	scorm.init ({
+		manifest: '{{manifest}}',
+		element: '#scorm-object',
+		navigation: '#scorm-nav'
+	});
+});
+</script>
+
+<style>
+#scorm-nav {
+}
+
+	#scorm-nav ul {
+		list-style-type: none;
+		padding-left: 0;
+		margin-left: 0;
+	}
+
+	#scorm-nav li {
+		list-style-type: none;
+		display: inline;
+	}
+
+	#scorm-nav li a {
+		display: block;
+		float: left;
+		padding: 0px 7px 0px 7px;
+		border-left: 1px solid #ccc;
+	}
+
+	#scorm-nav li:first-child a {
+		border-left: 0;
+	}
+
+	#scorm-nav li.active a {
+		font-weight: bold;
+	}
+
+#scorm-object {
+	width: 100%;
+	height: 500px;
+	clear: both;
+}
+
+	#scorm-object iframe {
+		border: 0;
+		width: 100%;
+		height: 100%;
+	}
+</style>
+
+<div id="scorm-nav"></div>
+
+<div id="scorm-object"></div>

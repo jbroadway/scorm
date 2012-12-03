@@ -1,0 +1,141 @@
+<?xml version="1.0" standalone="no" ?>
+<!--
+Metadata example. SCORM 2004 3rd Edition.
+
+Provided by Rustici Software - http://www.scorm.com
+
+This example extends the basic single SCO example to include the use of metadata.
+Usage of metadata is demonstrated in every place it can be applied. Both in-line and
+external metadata are demonstrated. The external course-level metadata contains a complete
+example of the proper usage of every metadata element.
+-->
+<manifest identifier="com.scorm.golfsamples.contentpackaging.metadata.20043rd" version="1"
+          xmlns="http://www.imsglobal.org/xsd/imscp_v1p1"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_v1p3"
+          xmlns:adlseq="http://www.adlnet.org/xsd/adlseq_v1p3"
+          xmlns:adlnav="http://www.adlnet.org/xsd/adlnav_v1p3"
+          xmlns:imsss="http://www.imsglobal.org/xsd/imsss"
+          xmlns:lom="http://ltsc.ieee.org/xsd/LOM"
+          xsi:schemaLocation="http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd
+                              http://www.adlnet.org/xsd/adlcp_v1p3 adlcp_v1p3.xsd
+                              http://www.adlnet.org/xsd/adlseq_v1p3 adlseq_v1p3.xsd
+                              http://www.adlnet.org/xsd/adlnav_v1p3 adlnav_v1p3.xsd
+                              http://www.imsglobal.org/xsd/imsss imsss_v1p0.xsd
+                              http://ltsc.ieee.org/xsd/LOM lom.xsd">
+	
+  <metadata>
+		<schema>ADL SCORM</schema>
+		<schemaversion>2004 3rd Edition</schemaversion>
+    <!--
+    Metadata that describes the course as a whole. This is an example of 
+    linking to an external metadata file. This metadata instance contains an
+    example of the proper usage of every metadata element
+    -->
+    <adlcp:location>metadata_course.xml</adlcp:location>
+	</metadata>
+
+	<organizations default="golf_sample_default_org">
+		<organization identifier="golf_sample_default_org">
+			<title>Golf Explained - Metadata Example</title>
+			<item identifier="item_1" identifierref="resource_1">
+				<title>Golf Explained</title>
+        
+        <!-- 
+        Metadata about this item.
+        This is an example of providing in-line metadata.
+        -->
+        <metadata>
+          <lom xmlns="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM lom.xsd">
+            <general>
+              <description>
+                <string language="en-us">The primary item of the Golf Explained course, this training provides an overview of the sport of golf.</string>
+              </description>
+            </general>
+          </lom>
+        </metadata>
+			</item>
+      
+      <!-- Metadata about this organization-->
+      <metadata>
+        <adlcp:location>metadata_organization.xml</adlcp:location>
+      </metadata>
+		</organization>
+	</organizations>
+ <resources>
+		<resource identifier="resource_1" type="webcontent" adlcp:scormType="sco" href="shared/launchpage.html">
+      
+      <!-- Metadata about this resource-->
+      <metadata>
+        <lom xmlns="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM lom.xsd">
+          <general>
+            <description>
+              <string language="en-us">The delivered SCO for the Golf Explained course.</string>
+            </description>
+          </general>
+        </lom>
+      </metadata>
+      
+      <file href="Etiquette/Course.html"/>
+      <file href="Etiquette/course.jpg"/>
+      <file href="Etiquette/Distracting.html"/>
+      <file href="Etiquette/distracting.jpg"/>
+      <file href="Etiquette/Play.html"/>
+      <file href="Etiquette/play.jpg"/>
+      <file href="Etiquette/questions.js"/>
+      <file href="Handicapping/calchandi.jpg"/>
+      <file href="Handicapping/calcscore.jpg"/>
+      <file href="Handicapping/CalculatingHandicap.html"/>
+      <file href="Handicapping/CalculatingScore.html"/>
+      <file href="Handicapping/Example.html"/>
+      
+      <file href="Handicapping/example.jpg">
+        <!-- Metadata about this particular file-->
+        <metadata>
+          <lom xmlns="http://ltsc.ieee.org/xsd/LOM" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://ltsc.ieee.org/xsd/LOM lom.xsd">
+            <general>
+              <description>
+                <string language="en-US">A picture of the club house at Elmridge Golf Course in Pawcatuck, CT.</string>
+              </description>
+            </general>
+            <technical>
+              <format>image/jpeg</format>
+              <size>12288</size>
+              <location>http://www.elmridgegolf.com/photogallery.php</location>
+            </technical>
+          </lom>
+        </metadata>
+      </file>
+      
+      <file href="Handicapping/Overview.html"/>
+      <file href="Handicapping/overview.jpg"/>
+      <file href="Handicapping/questions.js"/>
+      <file href="HavingFun/friends.jpg"/>
+      <file href="HavingFun/fun.jpg"/>
+      <file href="HavingFun/HowToBeStylish.html"/>
+      <file href="HavingFun/HowToHaveFun.html"/>
+      <file href="HavingFun/MakeFriends.html"/>
+      <file href="HavingFun/questions.js"/>
+      <file href="HavingFun/stylish.jpg"/>
+      <file href="Playing/otherscoreing.jpg"/>
+      <file href="Playing/OtherScoring.html"/>
+      <file href="Playing/Par.html"/>
+      <file href="Playing/par.jpg"/>
+      <file href="Playing/Playing.html"/>
+      <file href="Playing/playing.jpg"/>
+      <file href="Playing/questions.js"/>
+      <file href="Playing/rules.jpg"/>
+      <file href="Playing/RulesOfGolf.html"/>
+      <file href="Playing/Scoring.html"/>
+      <file href="Playing/scoring.jpg"/>
+      <file href="shared/assessmenttemplate.html"/>
+      <file href="shared/background.jpg"/>
+      <file href="shared/cclicense.png"/>
+      <file href="shared/contentfunctions.js"/>
+      <file href="shared/launchpage.html"/>
+      <file href="shared/scormfunctions.js"/>
+      <file href="shared/style.css"/>
+    
+		</resource>
+	</resources>
+</manifest>
