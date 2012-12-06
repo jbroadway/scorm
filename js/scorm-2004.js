@@ -85,6 +85,8 @@ var scorm = (function ($) {
 
 	self.resources = [];
 
+	self.items = [];
+
 	self.current = 0;
 
 	self.init = function (opts) {
@@ -100,35 +102,70 @@ var scorm = (function ($) {
 
 	self.parse_manifest = function (res) {
 		self.res = res;
-		$(res).find ('resource').each (function () {
-			if ($(this).attr ('adlcp:scormType') === 'sco') {
-				self.resources.push (this);
-			}
+		self.current = null;
+
+		self.resources = [];
+		$(res).find ('resources>resource').each (function () {
+			self.resources.push (this);
+		});
+
+		self.items = [];
+		$(res).find ('organization>item').each (function () {
+			self.items.push (this);
 		});
 
 		self.nav.append ('<ul></ul>');
 		var ul = self.nav.find ('ul');
 
-		for (var i = 0; i < self.resources.length; i++) {
-			var item = $(res).find ('item[identifierref=' + $(self.resources[i]).attr ('identifier') + ']')[0],
-				title = $(item).find ('title').text ();
+		for (var i = 0; i < self.items.length; i++) {
+			var idref = $(self.items[i]).attr ('identifierref'),
+				title = $(self.items[i]).find ('title:first').text ();
 
-			ul.append ('<li id="scorm-nav-' + i + '" class="scorm-nav"><a href="#" onclick="return scorm.load_resource (' + i + ')">' + title + '</a></li>');
+			if (idref) {
+				if (self.current === null) {
+					self.current = idref;
+				}
+
+				ul.append ('<li id="scorm-nav-' + idref + '" class="scorm-nav"><a href="#" onclick="return scorm.load_resource (\'' + idref + '\')">' + title + '</a></li>');
+			} else {
+				var li = $('<li class="scorm-nav"><span>' + title + '</span><ul></ul></li>'),
+					sub = li.find ('ul');
+
+				$(self.items[i]).find ('item').each (function () {
+					var _idref = $(this).attr ('identifierref'),
+						_title = $(this).find ('title:first').text ();
+
+					if (self.current === null) {
+						self.current = _idref;
+					}
+
+					sub.append ('<li id="scorm-nav-' + _idref + '" class="scorm-nav"><a href="#" onclick="return scorm.load_resource (\'' + _idref + '\')">' + _title + '</a></li>');
+				});
+
+				ul.append (li);
+			}
 		}
 
 		self.load_resource (self.current);
 	};
 
-	self.load_resource = function (num) {
-		self.current = num;
+	self.load_resource = function (cur) {
+		self.current = cur;
 
-		var resource = $(self.resources[num]),
-			url = self.dirname (self.manifest) + resource.attr ('xml:base') + resource.attr ('href');
+		var resource = $(self.res).find ('resource[identifier=' + cur + ']'),
+			url = self.dirname (self.manifest),
+			base = resource.attr ('xml:base');
+
+		if (base) {
+			url += base;
+		}
+		
+		url += resource.attr ('href');
 
 		self.el.html ('<iframe frameborder="0" scrolling="no" src="' + url + '"></iframe>');
 
 		$('.scorm-nav').removeClass ('active');
-		$('#scorm-nav-' + num).addClass ('active');
+		$('#scorm-nav-' + cur).addClass ('active');
 	};
 
 	self.dirname = function (url) {
