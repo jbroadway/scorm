@@ -1,0 +1,31 @@
+{! admin/util/dates !}
+
+<form method="post" action="/scorm/install">
+<p>
+	{"Install a new module from a .zip file"}:
+	<input type="file" name="zip" />
+	<input type="submit" value="{"Install"}" />
+</p>
+</form>
+
+<p>
+<table width="100%">
+	<tr>
+		<th width="50%">{"Module name"}</th>
+		<th width="30%">{"Created on"}</th>
+		<th width="20%">&nbsp;</th>
+	</tr>
+{% foreach modules as module %}
+	<tr>
+		<td>{{module->name}}</td>
+		<td>{{module->ts|I18n::date}}</td>
+		<td>
+			<a	href="/scorm/delete"
+				data-module="{{module->module}}"
+				onclick="return $.confirm_and_post (this, '{"Are you sure you want to delete this SCORM module?"}')"
+			>{"Delete"}</a>
+		</td>
+	</tr>
+{% end %}
+</table>
+</p>
