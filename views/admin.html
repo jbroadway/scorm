@@ -1,6 +1,6 @@
 {! admin/util/dates !}
 
-<form method="post" action="/scorm/install">
+<form method="post" action="/scorm/installer" enctype="multipart/form-data">
 <p>
 	{"Install a new module from a .zip file"}:
 	<input type="file" name="zip" />
@@ -18,7 +18,7 @@
 {% foreach modules as module %}
 	<tr>
 		<td>{{module->name}}</td>
-		<td>{{module->ts|I18n::date}}</td>
+		<td>{{module->created|I18n::date}}</td>
 		<td>
 			<a	href="/scorm/delete"
 				data-module="{{module->module}}"

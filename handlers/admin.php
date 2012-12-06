@@ -9,7 +9,7 @@ $page->title = __ ('SCORM');
 echo $tpl->render (
 	'scorm/admin',
 	array (
-		'modules' => array ()
+		'modules' => Scorm::get_modules (true)
 	)
 );
 
