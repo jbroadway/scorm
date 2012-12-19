@@ -1,98 +1,67 @@
 /**
- * SCORM 2004 implementation.
- */
-window.API_1484_11 = (function ($) {
-	var self = {};
-
-	self.prefix = '/scorm/api/1.2/';
-
-	self.initialized = false;
-
-	self.error = 0;
-
-	self.errors = {
-		201: 'Invalid argument'
-	};
-
-	var _store = {};
-
-	self.Initialize = function () {
-		if (self.initialized) {
-			return 'true';
-		}
-
-		if (arguments.length > 1 && arguments[0] !== '') {
-			self.error = 201;
-			return 'false';
-		}
-
-		self.initialized = true;
-		return 'true';
-	};
-
-	self.Terminate = function () {
-		return 'true';
-	};
-
-	self.GetValue = function (name) {
-		if (_store.hasOwnProperty (name)) {
-			return _store[name];
-		}
-		return 'false';
-	};
-
-	self.SetValue = function (name, value) {
-		_store[name] = value;
-		return 'true';
-	};
-
-	self.Commit = function (value) {
-		return 'true';
-	};
-
-	self.GetLastError = function () {
-		return self.error;
-	};
-
-	self.GetErrorString = function (code) {
-		return self.errors[code];
-	};
-
-	self.GetDiagnostic = function (code) {
-		return 'Not implemented';
-	};
-
-	return self;
-})(jQuery);
-
-/**
  * Handles the initialization from the manifest file.
  */
 var scorm = (function ($) {
 	var self = {};
 	
+	/**
+	 * The manifest file URL.
+	 */
 	self.manifest = '';
 
+	/**
+	 * The manifest response data.
+	 */
 	self.res = null;
 
+	/**
+	 * The selector of the element to embed the module content into.
+	 */
 	self.element = '#scorm-object';
 
+	/**
+	 * The selector of the element to embed the module navigation into.
+	 */
 	self.navigation = '#scorm-nav';
 
+	/**
+	 * The jQuery object for the content element.
+	 */
 	self.el = null;
 	
+	/**
+	 * The jQuery object for the navigation element.
+	 */
 	self.nav = null;
 
+	/**
+	 * The list of resources from the manifest.
+	 */
 	self.resources = [];
 
+	/**
+	 * The list of items from the manifest.
+	 */
 	self.items = [];
 
+	/**
+	 * The currently active resource in the module.
+	 */
 	self.current = 0;
 
+	/**
+	 * The in-browser data store.
+	 */
+	self.store = {};
+
+	/**
+	 * Initialize the SCORM module on the page.
+	 */
 	self.init = function (opts) {
 		self.manifest = opts.manifest;
 		self.element = opts.element;
 		self.navigation = opts.navigation;
+		self.store = opts.store || {};
 
 		self.el = $(self.element);
 		self.nav = $(self.navigation);
@@ -100,6 +69,9 @@ var scorm = (function ($) {
 		$.get (self.manifest, self.parse_manifest);
 	};
 
+	/**
+	 * Parse the manifest data.
+	 */
 	self.parse_manifest = function (res) {
 		self.res = res;
 		self.current = null;
@@ -149,6 +121,9 @@ var scorm = (function ($) {
 		self.load_resource (self.current);
 	};
 
+	/**
+	 * Load a resource into the module.
+	 */
 	self.load_resource = function (cur) {
 		self.current = cur;
 
@@ -164,12 +139,123 @@ var scorm = (function ($) {
 
 		self.el.html ('<iframe frameborder="0" scrolling="no" src="' + url + '"></iframe>');
 
-		$('.scorm-nav').removeClass ('active');
-		$('#scorm-nav-' + cur).addClass ('active');
+		$('.scorm-nav').removeClass ('scorm-active');
+		$('#scorm-nav-' + cur).addClass ('scorm-active');
+
+		return false;
 	};
 
+	/**
+	 * Get the directory name from an URL or file path.
+	 */
 	self.dirname = function (url) {
 		return url.replace (/\/[^\/]*$/, '/');
+	};
+
+	return self;
+})(jQuery);
+
+/**
+ * SCORM 2004 implementation.
+ */
+window.API_1484_11 = (function ($) {
+	var self = {};
+
+	/**
+	 * The URL prefix to the server-side REST API.
+	 */
+	self.prefix = '/scorm/api/1.2/';
+
+	/**
+	 * Has the module been initialized.
+	 */
+	self.initialized = false;
+
+	/**
+	 * The last error code.
+	 */
+	self.error = 0;
+
+	/**
+	 * The list of error messages.
+	 */
+	self.errors = {
+		201: 'Invalid argument'
+	};
+
+	/**
+	 * Initialize the SCORM API for the module.
+	 */
+	self.Initialize = function () {
+		console.log ('Initialize()');
+		if (self.initialized) {
+			return 'true';
+		}
+
+		if (arguments.length > 1 && arguments[0] !== '') {
+			self.error = 201;
+			return 'false';
+		}
+
+		self.initialized = true;
+		return 'true';
+	};
+
+	/**
+	 * TODO: Terminate.
+	 */
+	self.Terminate = function () {
+		return 'true';
+	};
+
+	/**
+	 * Get a value from the SCORM backend.
+	 */
+	self.GetValue = function (name) {
+		console.log ('GetValue(' + name + ')');
+		if (scorm.store.hasOwnProperty (name)) {
+			console.log (scorm.store[name]);
+			return scorm.store[name];
+		}
+		console.log ('false');
+		return 'false';
+	};
+
+	/**
+	 * Set a value from the SCORM module.
+	 */
+	self.SetValue = function (name, value) {
+		console.log ('SetValue(' + name + ', ' + value + ')');
+		scorm.store[name] = value;
+		return 'true';
+	};
+
+	/**
+	 * TODO: Commit.
+	 */
+	self.Commit = function (value) {
+		return 'true';
+	};
+
+	/**
+	 * Get the last error code that occurred.
+	 */
+	self.GetLastError = function () {
+		return self.error;
+	};
+
+	/**
+	 * Get the error message from an error code.
+	 */
+	self.GetErrorString = function (code) {
+		return self.errors[code];
+	};
+
+	/**
+	 * Get diagnostic info from an error code.
+	 */
+	self.GetDiagnostic = function (code) {
+		return 'Not implemented';
 	};
 
 	return self;

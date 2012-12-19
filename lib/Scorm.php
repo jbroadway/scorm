@@ -42,6 +42,17 @@ class Scorm {
 	}
 
 	/**
+	 * Get all data for a module and user.
+	 */
+	public static function get_data ($module, $user) {
+		return DB::pairs (
+			'select key, value from #prefix#scorm_data where module = ? and user = ? order by key asc',
+			$module,
+			$user
+		);
+	}
+
+	/**
 	 * Is this the name of an installed SCORM module?
 	 */
 	public static function is_module ($name) {
