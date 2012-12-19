@@ -7,9 +7,6 @@ create table #prefix#scorm_data (
 	module char(128) not null,
 	key char(128) not null,
 	value char(255) not null
-	unique (module, user, key),
-	index (module, user, ts),
-	index (module, key, ts)
 );
 
 create unique index #prefix#scorm_unique on #prefix#scorm_data (module, user, key);
