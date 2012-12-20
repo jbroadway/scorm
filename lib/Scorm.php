@@ -45,11 +45,11 @@ class Scorm {
 	 * Get all data for a module and user.
 	 */
 	public static function get_data ($module, $user) {
-		return DB::pairs (
-			'select key, value from #prefix#scorm_data where module = ? and user = ? order by key asc',
-			$module,
-			$user
-		);
+		return scorm\Data::query ()
+			->where ('module', $module)
+			->where ('user', $user)
+			->order ('key', 'asc')
+			->fetch_assoc ('key', 'value');
 	}
 
 	/**
