@@ -89,10 +89,19 @@ var scorm = (function ($) {
 		self.nav.append ('<ul></ul>');
 		var ul = self.nav.find ('ul');
 
-		for (var i = 0; i < self.items.length; i++) {
-			var idref = $(self.items[i]).attr ('identifierref'),
-				title = $(self.items[i]).find ('title:first').text ();
+		self.build_menu (ul, self.items);
 
+		self.load_resource (self.current);
+	};
+
+	/**
+	 * Recursively build the menu structure.
+	 */
+	self.build_menu = function (ul, items) {
+		for (var i = 0; i < items.length; i++) {
+			var idref = $(items[i]).attr ('identifierref'),
+				title = $(items[i]).find ('title:first').text ();
+			
 			if (idref) {
 				if (self.current === null) {
 					self.current = idref;
@@ -101,24 +110,14 @@ var scorm = (function ($) {
 				ul.append ('<li id="scorm-nav-' + idref + '" class="scorm-nav"><a href="#" onclick="return scorm.load_resource (\'' + idref + '\')">' + title + '</a></li>');
 			} else {
 				var li = $('<li class="scorm-nav"><span>' + title + '</span><ul></ul></li>'),
-					sub = li.find ('ul');
+					sub = li.find ('ul'),
+					children = $(items[i]).children ('item');
 
-				$(self.items[i]).find ('item').each (function () {
-					var _idref = $(this).attr ('identifierref'),
-						_title = $(this).find ('title:first').text ();
-
-					if (self.current === null) {
-						self.current = _idref;
-					}
-
-					sub.append ('<li id="scorm-nav-' + _idref + '" class="scorm-nav"><a href="#" onclick="return scorm.load_resource (\'' + _idref + '\')">' + _title + '</a></li>');
-				});
+				self.build_menu (sub, children);
 
 				ul.append (li);
 			}
 		}
-
-		self.load_resource (self.current);
 	};
 
 	/**
