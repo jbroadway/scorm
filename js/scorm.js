@@ -257,7 +257,8 @@ window.API_1484_11 = (function ($) {
 	/**
 	 * TODO: Commit.
 	 */
-	self.Commit = function (value) {
+	self.Commit = function () {
+		console.log ('Commit()');
 		return 'true';
 	};
 
