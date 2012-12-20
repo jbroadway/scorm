@@ -164,7 +164,7 @@ window.API_1484_11 = (function ($) {
 	/**
 	 * The URL prefix to the server-side REST API.
 	 */
-	self.prefix = '/scorm/api/1.2/';
+	self.prefix = '/scorm/api/';
 
 	/**
 	 * Has the module been initialized.
