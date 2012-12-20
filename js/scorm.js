@@ -180,7 +180,32 @@ window.API_1484_11 = (function ($) {
 	 * The list of error messages.
 	 */
 	self.errors = {
-		201: 'Invalid argument'
+		0: 'No error',
+		101: 'General exception',
+		102: 'General initialization failure',
+		103: 'Already initialized',
+		104: 'Content instance terminated',
+		111: 'General termination failure',
+		112: 'Termination before initialization',
+		113: 'Termination after termination',
+		122: 'Retrieve data before initialization',
+		123: 'Retrieve data after termination',
+		132: 'Store data before initialization',
+		133: 'Store data after termination',
+		142: 'Commit before initialization',
+		143: 'Commit after termination',
+		201: 'Invalid argument',
+		301: 'General get failure',
+		351: 'General set failure',
+		391: 'General commit failure',
+		401: 'Undefined data model element',
+		402: 'Unimplemented data model element',
+		403: 'Data model element value not initialized',
+		404: 'Data model element is read only',
+		405: 'Data model element is write only',
+		406: 'Data model element type mismatch',
+		407: 'Data model element value out of range',
+		408: 'Data model dependency not established'
 	};
 
 	/**
@@ -256,6 +281,49 @@ window.API_1484_11 = (function ($) {
 	 */
 	self.GetDiagnostic = function (code) {
 		return 'Not implemented';
+	};
+
+	return self;
+})(jQuery);
+
+/**
+ * SCORM 1.2 wrapper.
+ */
+window.API = (function ($) {
+	var self = {};
+
+	var api = window.API_1484_11;
+
+	self.LMSInitialize = function () {
+		return api.Initialize ();
+	};
+
+	self.LMSFinish = function () {
+		return api.Terminate ();
+	};
+
+	self.LMSGetValue = function (name) {
+		return api.GetValue (name);
+	};
+
+	self.LMSSetValue = function (name, value) {
+		return api.SetValue (name, value);
+	};
+
+	self.LMSCommit = function () {
+		return api.Commit ();
+	};
+
+	self.LMSGetLastError = function () {
+		return api.GetLastError ();
+	};
+
+	self.LMSGetErrorString = function (code) {
+		return api.GetErrorString (code);
+	};
+
+	self.LMSGetDiagnostic = function (code) {
+		return api.GetDiagnostic (code);
 	};
 
 	return self;

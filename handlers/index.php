@@ -11,7 +11,7 @@ if (! isset ($data['module'])) {
 	return;
 }
 
-$page->add_script ('/apps/scorm/js/scorm-2004.js');
+$page->add_script ('/apps/scorm/js/scorm.js');
 
 echo $tpl->render ('scorm/index', array (
 	'path' => Scorm::$path,
