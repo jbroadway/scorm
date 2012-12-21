@@ -1,0 +1,21 @@
+{
+    "name": "elefant/app-scorm",
+    "type": "elefant-app",
+    "description": "Adds SCORM support to the Elefant CMS",
+    "keywords": ["scorm", "elearning", "e-learning", "education", "training", "elefant", "cms", "app"],
+    "license": "MIT",
+    "version": "1.0",
+	"authors": [
+		{
+			"name": "Johnny Broadway",
+			"email": "johnny@johnnybroadway.com",
+			"homepage": "http://www.johnnybroadway.com/"
+		}
+	],
+    "repositories": [
+        {"type": "git", "url": "http://github.com/jbroadway/elefant_installer"}
+    ],
+    "require": {
+        "elefant/app-installer": "*"
+    }
+}
