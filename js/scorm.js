@@ -5,6 +5,11 @@ var scorm = (function ($) {
 	var self = {};
 	
 	/**
+	 * The module ID in the system.
+	 */
+	self.module = '';
+	
+	/**
 	 * The manifest file URL.
 	 */
 	self.manifest = '';
@@ -58,6 +63,7 @@ var scorm = (function ($) {
 	 * Initialize the SCORM module on the page.
 	 */
 	self.init = function (opts) {
+		self.module = opts.module;
 		self.manifest = opts.manifest;
 		self.element = opts.element;
 		self.navigation = opts.navigation;
@@ -211,7 +217,7 @@ window.API_1484_11 = (function ($) {
 	 * Initialize the SCORM API for the module.
 	 */
 	self.Initialize = function () {
-		console.log ('Initialize()');
+		//console.log ('Initialize()');
 		if (self.initialized) {
 			return 'true';
 		}
@@ -236,29 +242,35 @@ window.API_1484_11 = (function ($) {
 	 * Get a value from the SCORM backend.
 	 */
 	self.GetValue = function (name) {
-		console.log ('GetValue(' + name + ')');
 		if (scorm.store.hasOwnProperty (name)) {
-			console.log (scorm.store[name]);
+			//console.log ('GetValue(' + name + ') -> ' + scorm.store[name]);
 			return scorm.store[name];
 		}
-		console.log ('false');
-		return 'false';
+		//console.log ('GetValue(' + name + ') -> ""');
+		return '';
 	};
 
 	/**
 	 * Set a value from the SCORM module.
 	 */
 	self.SetValue = function (name, value) {
-		console.log ('SetValue(' + name + ', ' + value + ')');
+		//console.log ('SetValue(' + name + ', ' + value + ')');
 		scorm.store[name] = value;
-		return 'true';
+		return value;
 	};
 
 	/**
 	 * TODO: Commit.
 	 */
 	self.Commit = function () {
-		console.log ('Commit()');
+		//console.log ('Commit()');
+		$.post (
+			self.prefix + 'commit',
+			{module: scorm.module, data: scorm.store},
+			function (res) {
+				//console.log (res);
+			}
+		);
 		return 'true';
 	};
 

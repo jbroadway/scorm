@@ -14,10 +14,10 @@ if (! isset ($data['module'])) {
 $page->add_script ('/apps/scorm/js/scorm.js');
 
 echo $tpl->render ('scorm/index', array (
-	'path' => Scorm::$path,
+	'path' => scorm\Util::$path,
 	'module' => $data['module'],
-	'manifest' => Scorm::$manifest,
-	'data' => Scorm::get_data ($data['module'], User::val ('id'))
+	'manifest' => scorm\Util::$manifest,
+	'data' => scorm\Data::get_values ($data['module'], User::val ('id'))
 ));
 
 ?>

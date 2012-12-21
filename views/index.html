@@ -1,10 +1,11 @@
 <script>
 $(function () {
 	scorm.init ({
+		module: '{{module}}',
 		manifest: '/{{path}}/{{module}}/{{manifest}}',
 		element: '#scorm-object',
 		navigation: '#scorm-nav',
-		store: {{data|json_encode}}
+		store: {{data|json_encode (%s, JSON_FORCE_OBJECT)}}
 	});
 });
 </script>

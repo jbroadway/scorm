@@ -1,9 +1,11 @@
 <?php
 
+namespace scorm;
+
 /**
  * Helper methods for accessing installed SCORM modules.
  */
-class Scorm {
+class Util {
 	/**
 	 * The path to the scorm folder.
 	 */
@@ -39,17 +41,6 @@ class Scorm {
 			}
 		}
 		return $modules;
-	}
-
-	/**
-	 * Get all data for a module and user.
-	 */
-	public static function get_data ($module, $user) {
-		return scorm\Data::query ()
-			->where ('module', $module)
-			->where ('user', $user)
-			->order ('key', 'asc')
-			->fetch_assoc ('key', 'value');
 	}
 
 	/**
@@ -93,8 +84,8 @@ class Scorm {
 		$folder = basename ($file['name'], '.zip');
 
 		try {
-			Zipper::unzip ($file['tmp_name'], self::$path . '/' . $folder);
-		} catch (Exception $e) {
+			\Zipper::unzip ($file['tmp_name'], self::$path . '/' . $folder);
+		} catch (\Exception $e) {
 			self::$error = __ ('Could not unzip the file.');
 			return false;
 		}

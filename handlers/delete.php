@@ -6,7 +6,7 @@ if (! isset ($_POST['module'])) {
 	$this->redirect ('/scorm/admin');
 }
 
-if (! Scorm::is_module ($_POST['module'])) {
+if (! scorm\Util::is_module ($_POST['module'])) {
 	$this->add_notification (__ ('Invalid module name.'));
 	$this->redirect ('/scorm/admin');
 }

@@ -3,9 +3,9 @@ create table #prefix#scorm_data (
 	user int not null,
 	ts datetime not null,
 	module char(128) not null,
-	key char(128) not null,
+	datakey char(128) not null,
 	value char(255) not null
-	unique (module, user, key),
+	unique (module, user, datakey),
 	index (module, user, ts),
-	index (module, key, ts)
+	index (module, datakey, ts)
 );

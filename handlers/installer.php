@@ -9,9 +9,9 @@ if (! isset ($_FILES['zip'])) {
 	$this->redirect ('/scorm/admin');
 }
 
-$res = Scorm::install ($_FILES['zip']);
+$res = scorm\Util::install ($_FILES['zip']);
 if ($res === false) {
-	$this->add_notification (Scorm::$error);
+	$this->add_notification (scorm\Util::$error);
 	$this->redirect ('/scorm/admin');
 }
 
