@@ -241,7 +241,7 @@ window.API_1484_11 = (function ($) {
 	 * Get a value from the SCORM backend.
 	 */
 	self.GetValue = function (name) {
-		if (name.match (/^adl\.data/)) {
+		/*if (name.match (/^adl\.data/)) {
 			if (name.match (/\._count$/)) {
 				if (! scorm.store.hasOwnProperty ('adl.data')) {
 					scorm.store['adl.data'] = [];
@@ -265,7 +265,7 @@ window.API_1484_11 = (function ($) {
 			}
 
 			return data[num][prop];
-		}
+		}*/
 
 		if (scorm.store.hasOwnProperty (name)) {
 			return scorm.store[name];
@@ -277,7 +277,7 @@ window.API_1484_11 = (function ($) {
 	 * Set a value from the SCORM module.
 	 */
 	self.SetValue = function (name, value) {
-		if (name.match (/^adl\.data/)) {
+		/*if (name.match (/^adl\.data/)) {
 			var list = name.replace (/^adl\.data\./, '').split ('.'),
 				num = parseInt (list[0]),
 				prop = list[1];
@@ -292,7 +292,7 @@ window.API_1484_11 = (function ($) {
 
 			scorm.store['adl.data'][num][prop] = value;
 			return 'true';
-		}
+		}*/
 
 		scorm.store[name] = value;
 		return 'true';
