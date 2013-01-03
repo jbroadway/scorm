@@ -217,7 +217,6 @@ window.API_1484_11 = (function ($) {
 	 * Initialize the SCORM API for the module.
 	 */
 	self.Initialize = function () {
-		//console.log ('Initialize()');
 		if (self.initialized) {
 			return 'true';
 		}
@@ -242,11 +241,35 @@ window.API_1484_11 = (function ($) {
 	 * Get a value from the SCORM backend.
 	 */
 	self.GetValue = function (name) {
+		if (name.match (/^adl\.data/)) {
+			if (name.match (/\._count$/)) {
+				if (! scorm.store.hasOwnProperty ('adl.data')) {
+					scorm.store['adl.data'] = [];
+				}
+				return scorm.store['adl.data'].length.toString ();
+			}
+
+			var list = name.replace (/^adl\.data\./, '').split ('.'),
+				num = parseInt (list[0]),
+				prop = list[1],
+				data = scorm.store['adl.data'];
+
+			if (! data[num]) {
+				self.error = 407;
+				return '';
+			}
+
+			if (! data[num].hasOwnProperty (prop)){ 
+				self.error = 407;
+				return '';
+			}
+
+			return data[num][prop];
+		}
+
 		if (scorm.store.hasOwnProperty (name)) {
-			//console.log ('GetValue(' + name + ') -> ' + scorm.store[name]);
 			return scorm.store[name];
 		}
-		//console.log ('GetValue(' + name + ') -> ""');
 		return '';
 	};
 
@@ -254,16 +277,31 @@ window.API_1484_11 = (function ($) {
 	 * Set a value from the SCORM module.
 	 */
 	self.SetValue = function (name, value) {
-		//console.log ('SetValue(' + name + ', ' + value + ')');
+		if (name.match (/^adl\.data/)) {
+			var list = name.replace (/^adl\.data\./, '').split ('.'),
+				num = parseInt (list[0]),
+				prop = list[1];
+			
+			if (! scorm.store.hasOwnProperty ('adl.data')) {
+				scorm.store['adl.data'] = [];
+			}
+
+			if (! scorm.store['adl.data'][num]) {
+				scorm.store['adl.data'][num] = {};
+			}
+
+			scorm.store['adl.data'][num][prop] = value;
+			return 'true';
+		}
+
 		scorm.store[name] = value;
-		return value;
+		return 'true';
 	};
 
 	/**
 	 * TODO: Commit.
 	 */
 	self.Commit = function () {
-		//console.log ('Commit()');
 		$.post (
 			self.prefix + 'commit',
 			{module: scorm.module, data: scorm.store},
