@@ -7,7 +7,7 @@ namespace scorm;
  *
  * Usage:
  *
- *     $value = new scorm\Data::get_value ($module, $user, $key);
+ *     $value = scorm\Data::get_value ($module, $user, $key);
  *     printf ('<p>%s: %s</p>', $key, $value);
  */
 class Data extends \Model {

@@ -19,9 +19,16 @@ class API extends \Restful {
 			\User::val ('id'),
 			$_POST['data']
 		);
+
 		if (! $res) {
 			return $this->error (Data::$update_error);
 		}
+
+		$this->controller->hook ('scorm/commit', array (
+			'module' => $_POST['module'],
+			'data' => $_POST['data']
+		));
+
 		return $res;
 	}
 }
