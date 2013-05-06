@@ -4,7 +4,7 @@
     "description": "Adds SCORM support to the Elefant CMS",
     "keywords": ["scorm", "elearning", "e-learning", "education", "training", "elefant", "cms", "app"],
     "license": "MIT",
-    "version": "1.0",
+    "version": "1.0.0",
 	"authors": [
 		{
 			"name": "Johnny Broadway",
