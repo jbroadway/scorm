@@ -2,7 +2,7 @@
     "type":         "app",
     "folder":       "scorm",
     "name":         "SCORM",
-    "version":      "0.9.0",
+    "version":      "1.0.0",
     "website":      "http://www.elefantcms.com/",
     "repository":   "git://github.com/jbroadway/scorm.git",
     "author": {
